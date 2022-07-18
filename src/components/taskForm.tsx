@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import Button from "react-bootstrap/Button"
+
 
 interface Props {
-    onAction: (title: any) => void,
+    isEdit: boolean,
+    hideModal: () => void,
+    onAction: (title: string, id: number) => void,
+    inId: number,
+    inTitle?: string,
 }
 
-const TaskForm = ({onAction}: Props) => {
+const TaskForm = ({isEdit, onAction, hideModal, inTitle, inId}: Props) => {
 
     const [ title, setTitle ] = useState('');
 
@@ -13,17 +19,27 @@ const TaskForm = ({onAction}: Props) => {
     }
  
     const submitHandler = (e: any) => {
-        console.log(e);
         e.preventDefault();
+        if (title.trim().length === 0 || title === inTitle) return;
+        
         e.target.reset();
-        onAction(title);
+        onAction(title, inId);
+        hideModal();
     }
 
     return(
         <form onSubmit={ submitHandler }>
             <label htmlFor='titleInput'>Title: </label>
             <input id='titleInput' type='text' onChange={ changeHandler } />
-            <button type='submit'>Create Task</button>
+            <input id='noteInput' type='text' onChange={ changeHandler } />
+            <div>
+                <span>
+                    <Button variant="danger" onClick={hideModal}>Cancel</Button>
+                </span>
+                <span>
+                    <Button variant="primary" type='submit'>{ isEdit ? 'Update' : 'Create' } Task</Button>
+                </span>
+            </div>
         </form>
     )
 }

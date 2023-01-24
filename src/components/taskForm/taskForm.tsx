@@ -31,6 +31,7 @@ const TaskForm = ({isEdit, onAction, hideModal, taskData, nextTaskId}: Props) =>
             title,
             note,
             id: taskData?.id || nextTaskId,
+            tags: taskData?.tags
         }
         onAction(newTask);
         hideModal();

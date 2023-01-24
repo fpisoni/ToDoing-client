@@ -18,7 +18,7 @@ const action = (task: TaskModel) => console.log;
 describe('Tasks test', () => {
     
     beforeEach(() => {
-        render(<Tasks tasks={expectedTasks} onDelete={(id: string) => console.log} setEdit={action} onSelect={testOnSelect} onDeselect={testOnDeselect}/>);
+        render(<Tasks tasks={expectedTasks} onDelete={(id: string) => console.log} setEdit={action}/>);
     })
 
     test("it renders the component and all it's tasks", () => {

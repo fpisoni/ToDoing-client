@@ -1,6 +1,7 @@
 .App {
-  background-color: lightgray;
+  background-color: #F4F4F4;
   min-height: 100vh;
+  display:flexbox;
 }
 
 .App-logo {
@@ -15,7 +16,7 @@
 }
 
 .App-header {
-  background-color: lightgray;
+  background-color: #F4F4F4;
   min-height: 50vh;
   display: flex;
   flex-direction: column;
@@ -26,22 +27,13 @@
 }
 
 .App-body {
-  background-color: lightgray;  
+  background-color: #F4F4F4;  
   display: block;
   flex-direction: column;
   font-size: calc( 7px + 2vmin);
-  color: black;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-margin{
+  margin-left:'15px';
+  margin-bottom: '15px'
 }

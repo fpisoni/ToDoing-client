@@ -5,7 +5,10 @@ import TaskFormModal from '../../components/taskFormModal/taskFormModal';
 import { TaskModel } from '../../models/task.model';
 import Tasks from '../tasks/tasks';
 import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button';
+import IconButton from '@mui/material/IconButton';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Tooltip from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
 function Main() {
 
@@ -55,10 +58,10 @@ function Main() {
     }
   }
 
-  const buttonStyle = {
+  const StyledButton = styled(IconButton)({
     marginBottom: '15px',
     marginLeft: '15px',
-  }
+  })
 
   return (
     <div className="app">
@@ -75,7 +78,11 @@ function Main() {
         />
         <Container className='app__body'>
           <Tasks tasks={tasks} onDelete={deleteHandler} setEdit={setEdit} />
-          <Button className='button-create' style={buttonStyle} variant="secondary" onClick={handleShowModal}> Add Task </Button>
+          <Tooltip title='Add task'>
+            <StyledButton className='button-create' onClick={handleShowModal}>
+              <AddCircleIcon />
+            </StyledButton>
+          </Tooltip>
         </Container>
       </div>
     </div>

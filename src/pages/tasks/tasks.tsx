@@ -35,7 +35,7 @@ const Tasks = ({tasks, onDelete, setEdit }: Props) => {
     return(
         <div>
             <Tags onSelect={handleSelectTag} onDeselect={handleDeselectTag}/>
-            <Container >
+            <Container className="tasks">
                 { filteredTasks.map((task) => 
                     <Task key={task.id} data={task} onDelete={onDelete} setEdit={setEdit} onSelect={handleSelectTag} onDeselect={handleDeselectTag}/> )
                 }

@@ -14,12 +14,12 @@ interface Props {
 
 const TaskFormModal = ({ show, action, onHide, taskData, nextTaskId }: Props) => {
     return(
-        <Modal show={show}>
-            <Modal.Header>
-                <Modal.Title role={'term'}>{taskData ? 'Edit' : 'Create'} Task</Modal.Title>
+        <Modal className={"modal" + (show ? 'modal-hidden' : '')} show={show}>
+            <Modal.Header className="modal__header">
+                <Modal.Title  className="modal__title"role={'term'}>{taskData ? 'Edit' : 'Create'} Task</Modal.Title>
                 <CloseButton onClick={onHide}/>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="modal__body">
                 <TaskForm isEdit={taskData ? true : false} onAction={action} hideModal={onHide} taskData={taskData} nextTaskId={nextTaskId} />
             </Modal.Body>
         </Modal>

@@ -20,8 +20,8 @@ const Tag = ({ data, onSelect, onDeselect }: Props) => {
     }
 
     return(
-        <div style={data.selected ? { backgroundColor: "orange" } : {}}>
-            <p onClick={data.selected ? deselectTag : selectTag}>
+        <div className={'tag' + data.selected ? 'tag--selected' : ''} style={data.selected ? { backgroundColor: "orange" } : {}}>
+            <p className='tag__title' onClick={data.selected ? deselectTag : selectTag}>
                 {data.title}
             </p>
         </div>

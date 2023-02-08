@@ -19,11 +19,11 @@ const Tags = ({onSelect, onDeselect}: Props) => {
 
     return(
         <Container>
-            <div style={{backgroundColor: "white"}}>
-                <Card.Body>
+            <div className="tags__container" style={{backgroundColor: "white"}}>
+                <Card.Body className="tags">
                     {tags.map(tag => <Tag key={tag.id} data={tag} onSelect={onSelect} onDeselect={onDeselect} />)}
                 </Card.Body>            
-                <footer style={{textAlign: "center"}}>
+                <footer className='footer' style={{textAlign: "center"}}>
                     Filter by tags
                 </footer>
             </div>

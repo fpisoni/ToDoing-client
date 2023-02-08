@@ -20,14 +20,14 @@ const Task = ( {data, onDelete, setEdit, onSelect, onDeselect}: Props ) => {
     const editTask = () => setEdit(data);
 
     return(
-        <Card className="mb-2">
-            <Card.Body style={{ fontSize:'70%' }}>
-                <Card.Title className="task-title">{data.title}</Card.Title>
-                <Card.Text className="task-text" style={{ color:'#9F9F9F'}}>{data.note}</Card.Text>
-                <Button data-testid='delete-button' variant="outline-dark" onClick={deleteTask} size='sm' >Delete</Button>
-                <Button data-testid='edit-button' variant="outline-secondary" onClick={editTask} size='sm' style={{ marginLeft: '5px' }}>Edit</Button>
+        <Card className="task__container mb-2">
+            <Card.Body className="task" style={{ fontSize:'70%' }}>
+                <Card.Title className="task__title">{data.title}</Card.Title>
+                <Card.Text className="task__text" style={{ color:'#9F9F9F'}}>{data.note}</Card.Text>
+                <Button className='button--delete' data-testid='delete_button' variant="outline-dark" onClick={deleteTask} size='sm' >Delete</Button>
+                <Button className='button--edit' data-testid='edit-button' variant="outline-secondary" onClick={editTask} size='sm' style={{ marginLeft: '5px' }}>Edit</Button>
             </Card.Body>
-            <Card.Footer style={{display: data.tags ? "block" : "none"}}>
+            <Card.Footer className="task__footer" style={{display: data.tags ? "block" : "none"}}>
                 {data.tags?.map(tag => <Tag key={tag.id} data={tag} onSelect={onSelect} onDeselect={onDeselect} />)}
             </Card.Footer>
         </Card>

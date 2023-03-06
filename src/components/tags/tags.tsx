@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import { Card, Container } from "react-bootstrap";
+import Container from "@mui/material/Container";
 import { TagModel } from "../../models/tag.model";
 import { v4 } from 'uuid'
 import Tag from "../tag/tag";
+import './tags.css';
 
 interface Props {
     onSelect: (tag: TagModel) => void,
@@ -18,16 +19,9 @@ const Tags = ({onSelect, onDeselect}: Props) => {
     ])
 
     return(
-        <Container>
-            <div className="tags__container" style={{backgroundColor: "white"}}>
-                <Card.Body className="tags">
+            <Container className="tags__container">
                     {tags.map(tag => <Tag key={tag.id} data={tag} onSelect={onSelect} onDeselect={onDeselect} />)}
-                </Card.Body>            
-                <footer className='footer' style={{textAlign: "center"}}>
-                    Filter by tags
-                </footer>
-            </div>
-        </Container>
+            </Container>
     )
 }
 

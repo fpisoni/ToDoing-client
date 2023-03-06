@@ -1,5 +1,8 @@
 import React from "react";
 import { TagModel } from "../../models/tag.model";
+import './tag.css';
+
+import { Chip } from "@mui/material";
 
 interface Props {
     data: TagModel,
@@ -20,11 +23,13 @@ const Tag = ({ data, onSelect, onDeselect }: Props) => {
     }
 
     return(
-        <div className={'tag' + data.selected ? 'tag--selected' : ''} style={data.selected ? { backgroundColor: "orange" } : {}}>
-            <p className='tag__title' onClick={data.selected ? deselectTag : selectTag}>
-                {data.title}
-            </p>
-        </div>
+        <Chip 
+            className={data.selected ? 'tag--selected' : 'tag'}
+            onClick={data.selected ? deselectTag : selectTag}
+            label={data.title}
+            variant='outlined'
+            color={data.selected ? 'warning' : undefined}
+        />
     )
 };
 

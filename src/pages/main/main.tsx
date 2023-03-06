@@ -9,11 +9,12 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 
 function Main() {
 
   const [tasks, setTasks] = useState<TaskModel[]>([
-    { title: 'Water Plants', note: "Don't overwater the cactus", id: generateUUID(),
+    { title: 'Water Plants', note: "Don't overwater the cactus", id: generateUUID(), dueDate: new Date(),
       tags: [
         { id: 'tag1' , title:'House duties', selected: false },
         { id: 'tag3' , title:'Urgent', selected: false }
@@ -59,16 +60,16 @@ function Main() {
   }
 
   const StyledButton = styled(IconButton)({
-    marginBottom: '15px',
-    marginLeft: '15px',
+    position:'fixed',
+    left: '93vw',
+    color: 'green',
+    bottom: '5vh',
+    transform: 'scale(2)',
   })
 
   return (
     <div className="app">
-      <header className="app__header">
-        <h1>Welcome back!</h1>
-      </header>
-      <div className='container-hidden'>
+      <div className='form-hidden'>
         <TaskFormModal
           show={showModal}
           onHide={handleHideModal}
@@ -76,15 +77,18 @@ function Main() {
           action={creationHandler}
           nextTaskId={generateUUID()}
         />
-        <Container className='app__body'>
-          <Tasks tasks={tasks} onDelete={deleteHandler} setEdit={setEdit} />
-          <Tooltip title='Add task'>
-            <StyledButton className='button-create' onClick={handleShowModal}>
-              <AddCircleIcon />
-            </StyledButton>
-          </Tooltip>
-        </Container>
       </div>
+      <Typography className='app__title' variant='subtitle2' fontSize='large' fontFamily=''>
+        ToDoing!
+      </Typography>
+      <Container className='app__body'>
+        <Tasks tasks={tasks} onDelete={deleteHandler} setEdit={setEdit} />
+      </Container>
+      <Tooltip title='Add task'>
+          <StyledButton className='button-create' onClick={handleShowModal}>
+            <AddCircleIcon fontSize='large' />
+          </StyledButton>
+      </Tooltip>
     </div>
   );
 }

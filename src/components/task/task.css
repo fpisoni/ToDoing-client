@@ -1,3 +1,46 @@
-.task__text {
-    color: #D2C3B0
+.task__container {
+    max-width: 33vw;
+    min-width: 15vw;
+    margin: 10px 5px;
+    height: 100%;
+}
+
+.actions__container {
+    margin-left: auto;
+}
+
+.task__note {
+    max-width: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+    background-color:forestgreen;
+    border-radius: 50%;
+    display:inline-block;
+}
+
+.title-dot__container {
+    display: flex;
+    align-items: center;
+}
+
+.check {
+    margin-left: auto;
+}
+
+.check:hover {
+    cursor: pointer;
+    color: forestgreen;
+}
+
+.date {
+    color: rgba(0, 0, 0, 0.3);
+    margin-top: 5px !important;
+    margin-left: 5px !important;
 }

@@ -4,8 +4,7 @@
     display:flexbox;
 }
   
-  
-.app__header {
+/* .app__header {
     background-color: #F4F4F4;
     min-height: 50vh;
     display: flex;
@@ -15,10 +14,15 @@
     font-size: calc(10px + 2vmin);
     color: black;
 }
+*/
+
+.app__title {
+    padding-top: 10px !important;
+    padding-left: 15px !important;
+}
   
 .app__body {
     background-color: #F4F4F4;  
-    display: block;
     flex-direction: column;
     font-size: calc( 7px + 2vmin);
 }

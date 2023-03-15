@@ -5,13 +5,16 @@ import { TagModel } from '../../models/tag.model';
 import './task.css'
 
 import CheckIcon from '@mui/icons-material/Check';
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+
+import IconButton from '@mui/material/IconButton';
 import Card from '@mui/material/Card'
 import { CardActions, CardContent, Collapse, IconButtonProps, Tooltip, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Link } from 'react-router-dom';
 
 interface Props {
     data: TaskModel,
@@ -78,6 +81,13 @@ const Task = ( {data, onDelete, setEdit, onSelect, onDeselect}: Props ) => {
                     </ExpandMore>
                 </div>
                 <div className='actions__container'>
+                    <Tooltip title='View'>
+                        <Link to={'task/' + data.id}>
+                            <IconButton className='button--edit'>
+                                <RemoveRedEyeIcon />
+                            </IconButton>
+                        </Link>
+                    </Tooltip>
                     <Tooltip title='Edit'>
                         <IconButton className='button--edit' data-testid='edit-button' onClick={editTask}>
                             <EditIcon />

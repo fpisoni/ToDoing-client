@@ -1,35 +1,29 @@
-import { Card, CardContent, Chip, Typography } from "@mui/material";
-import React from "react";
+import { Card, CardContent, CardHeader, Chip, Typography } from "@mui/material";
+import React, { useContext } from "react";
 import { TaskModel } from "../../models/task.model";
-import CheckIcon from '@mui/icons-material/Check';
 import './task-details.css';
+import { TasksContext } from "../../utils/contexts/tasksContext";
+import { Navigate, redirect, useParams } from "react-router-dom";
 
-interface Props {
-    data?: TaskModel;
-}
+const TaskDetail = () => {
 
-const TaskDetail = (props: Props) => {
+    const { id } = useParams()
 
-    const data: TaskModel = {
-        id: '34',
-        title: 'test',
-        dueDate: new Date(),
-        note: 'asdasdasd',
-        tags: [
-            { id: 'tag1' , title:'House duties', selected: false },
-            { id: 'tag3' , title:'Urgent', selected: false }
-          ],
-    }
+    let data: TaskModel | undefined = 
+        useContext(TasksContext).tasks.find(task => task.id === id);
 
     return (
+        data? 
         <Card className='task__container--details'>
+            <CardHeader>
+
+            </CardHeader>
             <CardContent>
                 <div className='title-dot__container'>
                     <span className='dot'></span>
                     <Typography variant='h3' component='div'>
                         {data.title}
                     </Typography>
-                    <CheckIcon className='check' color='disabled'></CheckIcon>
                 </div>
                 <Typography variant='caption' className='date--details'>
                     {data.dueDate?.toLocaleDateString()}
@@ -58,6 +52,7 @@ const TaskDetail = (props: Props) => {
                 </div>
             </CardContent>
         </Card>
+        : <Navigate to={'/'} />
     )
 
 }

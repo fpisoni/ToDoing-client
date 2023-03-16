@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { v4 as generateUUID } from 'uuid';
 import './dashboard.css';
 import TaskFormModal from '../../components/taskFormModal/taskFormModal';
@@ -9,24 +9,11 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import { TasksContext } from '../../utils/contexts/tasksContext';
 
 const Dashboard = () => {
 
-  const [tasks, setTasks] = useState<TaskModel[]>([
-    { title: 'Water Plants', note: "Don't overwater the cactus", id: generateUUID(), dueDate: new Date(),
-      tags: [
-        { id: 'tag1' , title:'House duties', selected: false },
-        { id: 'tag3' , title:'Urgent', selected: false }
-      ]
-    },
-    { title: 'Finish app', note:'Add dates!', id: generateUUID() },
-    { title: 'Have a meal', note:'', id: generateUUID(), dueDate: new Date() },
-    { title: 'Deal with the ants', note:'', id: generateUUID(),
-      tags: [
-        { id: 'tag3' , title:'Urgent', selected: false }
-      ]
-    },
-  ]);
+  const {tasks, setTasks} = useContext(TasksContext)
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isEdit, setIsEdit] = useState<TaskModel>();
@@ -56,10 +43,6 @@ const Dashboard = () => {
     if (window.confirm(deleteConfirmationMessage)){
       setTasks(tempTasks);
     }
-  }
-
-  const getTaskById = (id: string) => {
-    return tasks.find(task => task.id === id);
   }
 
   const StyledButton = styled(IconButton)({

@@ -19,7 +19,6 @@ import { Link } from 'react-router-dom';
 interface Props {
     data: TaskModel,
     onDelete: (id: string) => void,
-    setEdit: (data: TaskModel) => void,
     onSelect: (tag: TagModel) => void,
     onDeselect: (tag: TagModel) => void,
 }
@@ -40,7 +39,7 @@ interface ExpandMoreProps extends IconButtonProps {
   }));
 
 
-const Task = ( {data, onDelete, setEdit, onSelect, onDeselect}: Props ) => {
+const Task = ( {data, onDelete, onSelect, onDeselect}: Props ) => {
 
 
     const [expanded, setExpanded] = useState(false);
@@ -50,7 +49,6 @@ const Task = ( {data, onDelete, setEdit, onSelect, onDeselect}: Props ) => {
     }
     
     const deleteTask = () => onDelete(data.id);
-    const editTask = () => setEdit(data);
 
     return(
         <Card className='task__container'>
@@ -89,9 +87,11 @@ const Task = ( {data, onDelete, setEdit, onSelect, onDeselect}: Props ) => {
                         </Link>
                     </Tooltip>
                     <Tooltip title='Edit'>
-                        <IconButton className='button--edit' data-testid='edit-button' onClick={editTask}>
-                            <EditIcon />
-                        </IconButton>
+                        <Link to={'edit/' + data.id}>
+                            <IconButton className='button--edit' data-testid='edit-button'>
+                                <EditIcon />
+                            </IconButton>
+                        </Link>
                     </Tooltip>
                     <Tooltip title='Delete'>
                         <IconButton className='button--delete' data-testid='delete_button' onClick={deleteTask}>

@@ -1,8 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { v4 as generateUUID } from 'uuid';
+import React, { useContext } from 'react';
 import './dashboard.css';
-import TaskFormModal from '../../components/taskFormModal/taskFormModal';
-import { TaskModel } from '../../models/task.model';
 import Tasks from '../tasks/tasks';
 import Container from 'react-bootstrap/Container'
 import IconButton from '@mui/material/IconButton';
@@ -15,28 +12,7 @@ const Dashboard = () => {
 
   const {tasks, setTasks} = useContext(TasksContext)
 
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [isEdit, setIsEdit] = useState<TaskModel>();
   const deleteConfirmationMessage = "This will delete the task, you can't undo this. Are you sure?";
-
-  const handleHideModal = () => {
-    setShowModal(false);
-    setIsEdit(undefined);
-  }
-  
-  const handleShowModal = () => setShowModal(true);
-  const setEdit = (task: TaskModel) => {
-    setIsEdit(task);
-    handleShowModal();
-  }
-  
-  const creationHandler = (newTask: TaskModel) => {
-    if (isEdit){
-      setTasks(tasks.map(task => task.id === newTask.id ? newTask : task));
-      return;
-    } 
-    setTasks([...tasks, newTask]);
-  }
 
   const deleteHandler = (id: string) => {
     const tempTasks = tasks.filter(task => task.id !== id);
@@ -55,20 +31,11 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className='form-hidden'>
-        <TaskFormModal
-          show={showModal}
-          onHide={handleHideModal}
-          taskData={isEdit}
-          action={creationHandler}
-          nextTaskId={generateUUID()}
-        />
-      </div>
       <Container className='app__body'>
-        <Tasks tasks={tasks} onDelete={deleteHandler} setEdit={setEdit} />
+        <Tasks tasks={tasks} onDelete={deleteHandler} />
       </Container>
       <Tooltip title='Add task'>
-          <StyledButton className='button-create' onClick={handleShowModal}>
+          <StyledButton className='button-create'>
             <AddCircleIcon fontSize='large' />
           </StyledButton>
       </Tooltip>

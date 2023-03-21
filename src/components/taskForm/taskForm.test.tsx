@@ -10,12 +10,12 @@ const editAction = (task: TaskModel) => tasks[tasks.findIndex(t => t.id === task
 
 describe('Tests TaskForm', () => {
     test('Renders the component', () => {
-        const form = render(<TaskForm isEdit={false} hideModal={() => {  } } onAction={ createAction } nextTaskId={'333'}/>)
-        expect(form).toBeDefined();
+        const view = render(<TaskForm isEdit={false} onAction={ createAction } nextTaskId={'333'}/>);
+        expect(view).toBeDefined();
     });
 
     test('Renders create form', () => {
-        render(<TaskForm isEdit={false} hideModal={() => {  } } onAction={ createAction } nextTaskId={'333'}/>);
+        render(<TaskForm isEdit={false} onAction={ createAction } nextTaskId={'333'}/>);
         expect(screen.getByText(/Create/)).toBeInTheDocument();
         fireEvent.click(
             screen.getByTestId('action-button')
@@ -23,7 +23,7 @@ describe('Tests TaskForm', () => {
     })
 
     test('Renders edit form', () => {
-        render(<TaskForm isEdit={true} hideModal={() => {  } } onAction={ editAction } taskData={expectedTask} nextTaskId={'333'} />)
+        render(<TaskForm isEdit={true} onAction={ editAction } taskData={expectedTask} nextTaskId={'333'} />)
         expect(screen.getByText(/Update Task/)).toBeInTheDocument();
         fireEvent.click(
             screen.getByTestId('action-button')

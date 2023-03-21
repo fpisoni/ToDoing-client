@@ -5,8 +5,18 @@
     height: 100%;
 }
 
-.actions__container {
-    margin-left: auto;
+.task__footer-details {
+    background-color: #9797971f;
+    box-shadow: inset 0px 5px 3px -3px rgba(50, 50, 50, 0.75);
+}
+
+.actions__container-details {
+    margin-top: 7%;
+}
+
+.chip-action {
+    margin-right: 5px !important;
+    border-color: #616161 !important;
 }
 
 .task__note {
@@ -16,10 +26,9 @@
     white-space: nowrap;
 }
 
-.dot {
-    height: 10px;
-    width: 10px;
-    margin-right: 5px;
+.dot__details {
+    height: 27px;
+    width: 27px;
     background-color:forestgreen;
     border-radius: 50%;
     display:inline-block;

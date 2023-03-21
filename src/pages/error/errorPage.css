@@ -1,0 +1,14 @@
+.error__page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10vh;
+}
+
+.error__titles-container {
+    margin-bottom: 50px;
+}
+
+.error__title {
+    margin-left: 30% !important;
+}

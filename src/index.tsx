@@ -3,31 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-import App from './App';
-import Dashboard from './pages/dashboard/dashboard';
-import TaskDetail from './pages/task-detail/task-details';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      {
-        path: '',
-        element: <Dashboard />
-      },
-      {
-        path: 'task/:id',
-        element: <TaskDetail />,
-      }
-    ]
-  }
-])
+import { RouterProvider } from "react-router-dom";
+import router from './utils/router';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

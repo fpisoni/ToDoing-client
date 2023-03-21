@@ -9,10 +9,9 @@ import Tags from '../../components/tags/tags';
 interface Props {
     tasks: TaskModel[],
     onDelete: (id: string) => void,
-    setEdit: (data: TaskModel) => void,
 }
 
-const Tasks = ({tasks, onDelete, setEdit }: Props) => {
+const Tasks = ({tasks, onDelete }: Props) => {
     const [appliedTags, setAppliedTags] = useState<TagModel[]>([]);
     
     const [filteredTasks, setFilteredTasks] = useState<TaskModel[]>(tasks);
@@ -40,7 +39,7 @@ const Tasks = ({tasks, onDelete, setEdit }: Props) => {
             </div>
             <Container className="tasks">
                 { filteredTasks.map((task) => 
-                    <Task key={task.id} data={task} onDelete={onDelete} setEdit={setEdit} onSelect={handleSelectTag} onDeselect={handleDeselectTag}/> )
+                    <Task key={task.id} data={task} onDelete={onDelete} onSelect={handleSelectTag} onDeselect={handleDeselectTag}/> )
                 }
             </Container>
         </div>

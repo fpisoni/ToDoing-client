@@ -1,13 +1,19 @@
-import { Card, CardContent, CardHeader, Chip, Typography } from "@mui/material";
 import React, { useContext } from "react";
-import { TaskModel } from "../../models/task.model";
 import './task-details.css';
+import { TaskModel } from "../../models/task.model";
 import { TasksContext } from "../../utils/contexts/tasksContext";
-import { Navigate, redirect, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Card, CardContent, CardHeader, Chip, Typography } from "@mui/material";
+import DoneIcon from '@mui/icons-material/Done';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const TaskDetail = () => {
 
-    const { id } = useParams()
+    const { id } = useParams();
+    const redirect = useNavigate();
+
+    const editHandler = () => redirect('../../edit/' + id);
 
     let data: TaskModel | undefined = 
         useContext(TasksContext).tasks.find(task => task.id === id);
@@ -15,22 +21,46 @@ const TaskDetail = () => {
     return (
         data? 
         <Card className='task__container--details'>
-            <CardHeader>
-
-            </CardHeader>
-            <CardContent>
-                <div className='title-dot__container'>
-                    <span className='dot'></span>
-                    <Typography variant='h3' component='div'>
-                        {data.title}
-                    </Typography>
+            <CardHeader 
+                avatar={
+                    <span className='dot__details'></span>
+                }
+                title={data.title}
+                titleTypographyProps={{variant:'h3' }}
+                subheader={data.dueDate?.toLocaleDateString()}
+                action={
+                    <div className='actions__container-details'>
+                    <Chip
+                        className="chip-action"
+                        label='Delete' 
+                        variant="outlined"
+                        onDelete={() => {}}
+                        onClick={() => {}}
+                        deleteIcon={<DeleteIcon />}
+                        clickable
+                        color='error'/>
+                    <Chip
+                        className="chip-action"
+                        label='Edit' 
+                        variant="outlined"
+                        onDelete={editHandler}
+                        onClick={editHandler}
+                        deleteIcon={<EditIcon />}
+                        clickable />
+                    <Chip
+                        className="chip-action"
+                        label='Done' 
+                        variant="outlined"
+                        onDelete={() => {}}
+                        onClick={() => {}}
+                        deleteIcon={<DoneIcon />}
+                        clickable />
                 </div>
-                <Typography variant='caption' className='date--details'>
-                    {data.dueDate?.toLocaleDateString()}
-                </Typography>
+                }
+            />
+            <CardContent>
                 {data.note ?
                     <div className="note__section">
-                        <hr className="break"/>
                         <Typography variant="subtitle2">Comments:</Typography>
                         <Typography className='task__note' color='text.secondary' gutterBottom>
                             {data.note}
@@ -52,7 +82,7 @@ const TaskDetail = () => {
                 </div>
             </CardContent>
         </Card>
-        : <Navigate to={'/'} />
+        : <Navigate to={'/error'} />
     )
 
 }

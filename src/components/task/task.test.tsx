@@ -14,7 +14,7 @@ const testOnDeselect = (tag: TagModel) => console.log;
 
 describe('Task test', () => {
     beforeEach(() => {
-        render(<Task data={ expectedTask } onDelete={ testDelete } setEdit={ testEdit } onSelect={testOnSelect} onDeselect={testOnDeselect} />);
+        render(<Task data={ expectedTask } onDelete={ testDelete } onSelect={testOnSelect} onDeselect={testOnDeselect} />);
     });
 
     test('Renders the task component', () => {

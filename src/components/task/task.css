@@ -20,9 +20,28 @@
     height: 10px;
     width: 10px;
     margin-right: 5px;
-    background-color:forestgreen;
     border-radius: 50%;
     display:inline-block;
+}
+
+.dot--None {
+    background-color: grey;
+}
+
+.dot--Low {
+    background-color: deepskyblue;
+}
+
+.dot--Medium {
+    background-color: yellow;
+}
+
+.dot--High {
+    background-color: rgb(255, 123, 0);
+}
+
+.dot--Urgent {
+    background-color: red;
 }
 
 .title-dot__container {

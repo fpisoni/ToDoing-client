@@ -1,10 +1,10 @@
 import React from "react";
 import { fireEvent, render, screen } from '@testing-library/react';
 import Task from "./task";
-import { TaskModel } from "../../models/task.model";
+import { Priority, TaskModel } from "../../models/task.model";
 import { TagModel } from "../../models/tag.model";
 
-const expectedTask: TaskModel = { id:'1' , title:'Expected title', note: 'An expected note' };
+const expectedTask: TaskModel = { id:'1' , title:'Expected title', note: 'An expected note', priority: Priority.Low };
 let deleted = false;
 let edit: TaskModel;
 const testEdit = (task: TaskModel) => edit = task;

@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import TaskForm from "../../components/taskForm/taskForm";
 import { TaskModel } from "../../models/task.model";
 import { v4 as generateUUID } from 'uuid';
-import { Container, Typography } from "@mui/material";
-import { Card } from "react-bootstrap";
+import { Card, Container, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { TasksContext } from "../../utils/contexts/tasksContext";
 
@@ -32,7 +31,7 @@ const TaskManagement = ({ action }: Props) => {
             <div className="form__header">
                 <Typography className="form__title" variant="h3" >{taskData ? 'Edit' : 'Create'} Task</Typography>
             </div>
-            <Card className="form">
+            <Card variant="outlined" className="form">
                 <TaskForm isEdit={isEdit} onAction={creationHandler} taskData={taskData} nextTaskId={generateUUID()} />
             </Card>
         </Container>

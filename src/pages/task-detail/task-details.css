@@ -29,7 +29,6 @@
 .dot__details {
     height: 27px;
     width: 27px;
-    background-color:forestgreen;
     border-radius: 50%;
     display:inline-block;
 }
@@ -61,4 +60,9 @@
 .break {
     width: 78%;
     margin-left: 12%;
+}
+
+.return__button {
+    position: absolute !important;
+    left: 22.5vw;
 }

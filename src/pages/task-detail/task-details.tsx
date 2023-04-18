@@ -1,19 +1,28 @@
 import React, { useContext } from "react";
 import './task-details.css';
-import { TaskModel } from "../../models/task.model";
+import { Priority, TaskModel } from "../../models/task.model";
 import { TasksContext } from "../../utils/contexts/tasksContext";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { Card, CardContent, CardHeader, Chip, Typography } from "@mui/material";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Card, CardContent, CardHeader, Chip, IconButton, Tooltip, Typography } from "@mui/material";
 import DoneIcon from '@mui/icons-material/Done';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const TaskDetail = () => {
 
     const { id } = useParams();
     const redirect = useNavigate();
+    const { tasks, setTasks } = useContext(TasksContext);
+    const deleteConfirmationMessage = "This will delete the task, you can't undo this. Are you sure?";
 
     const editHandler = () => redirect('../../edit/' + id);
+    const deleteHandler = () => {
+        if (window.confirm(deleteConfirmationMessage)) {
+            setTasks(tasks.filter(task => task.id !== id));
+            redirect('/');
+        }
+    }
 
     let data: TaskModel | undefined = 
         useContext(TasksContext).tasks.find(task => task.id === id);
@@ -21,24 +30,22 @@ const TaskDetail = () => {
     return (
         data? 
         <Card className='task__container--details'>
+            <Link to={'/'}>
+                <IconButton className="return__button">
+                    <ArrowBackIosNewIcon />
+                </IconButton>
+            </Link>
             <CardHeader 
                 avatar={
-                    <span className='dot__details'></span>
+                    <Tooltip title={ (data?.priority === Priority.None ? 'No' : data?.priority) + ' Priority' } placement='bottom' arrow>
+                        <span className={'dot__details dot--' + data.priority}></span>
+                    </Tooltip>
                 }
                 title={data.title}
                 titleTypographyProps={{variant:'h3' }}
                 subheader={data.dueDate?.toLocaleDateString()}
                 action={
                     <div className='actions__container-details'>
-                    <Chip
-                        className="chip-action"
-                        label='Delete' 
-                        variant="outlined"
-                        onDelete={() => {}}
-                        onClick={() => {}}
-                        deleteIcon={<DeleteIcon />}
-                        clickable
-                        color='error'/>
                     <Chip
                         className="chip-action"
                         label='Edit' 
@@ -49,12 +56,22 @@ const TaskDetail = () => {
                         clickable />
                     <Chip
                         className="chip-action"
+                        label='Delete' 
+                        variant="outlined"
+                        onDelete={ deleteHandler }
+                        onClick={ deleteHandler }
+                        deleteIcon={<DeleteIcon />}
+                        clickable
+                        color='error'/>
+                    <Chip
+                        className="chip-action"
                         label='Done' 
                         variant="outlined"
-                        onDelete={() => {}}
-                        onClick={() => {}}
+                        onDelete={ () => {} }
+                        onClick={ () => {} }
                         deleteIcon={<DoneIcon />}
-                        clickable />
+                        clickable
+                        color="success" />
                 </div>
                 }
             />

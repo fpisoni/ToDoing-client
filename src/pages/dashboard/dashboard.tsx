@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import './dashboard.css';
 import Tasks from '../tasks/tasks';
-import Container from 'react-bootstrap/Container'
-import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import Tooltip from '@mui/material/Tooltip';
+import { Container, Tooltip, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { TasksContext } from '../../utils/contexts/tasksContext';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
 
@@ -35,9 +34,11 @@ const Dashboard = () => {
         <Tasks tasks={tasks} onDelete={deleteHandler} />
       </Container>
       <Tooltip title='Add task'>
+        <Link to={'create'}>
           <StyledButton className='button-create'>
-            <AddCircleIcon fontSize='large' />
+            <AddCircleIcon fontSize='large'/>
           </StyledButton>
+        </Link>
       </Tooltip>
     </div>
   );

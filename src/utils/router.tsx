@@ -25,6 +25,10 @@ const router = createBrowserRouter([
         {
           path: 'edit/:id',
           element: <TaskManagement />,
+        },
+        {
+          path: 'create',
+          element: <TaskManagement />,
         }
       ]
     }

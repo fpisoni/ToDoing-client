@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from '@testing-library/react';
 import Tasks from './tasks';
-import { TaskModel } from "../../models/task.model";
+import { Priority, TaskModel } from "../../models/task.model";
 import { TagModel } from "../../models/tag.model";
 
 const expectedTasks: TaskModel[] = [
-    { id: '1' , title:'Expected title', note: 'An expected note' },
-    { id: '2' , title:'Another title', note: 'Another expected note' },
-    { id: '3' , title:'Third title' },
-    { id: '5' , title:'Last title', note: 'An unexpected note' },
+    { id: '1' , title:'Expected title', note: 'An expected note', priority: Priority.Low },
+    { id: '2' , title:'Another title', note: 'Another expected note', priority: Priority.Medium },
+    { id: '3' , title:'Third title', priority: Priority.High },
+    { id: '5' , title:'Last title', note: 'An unexpected note', priority: Priority.Urgent },
 ]; 
 const testOnSelect = (tag: TagModel) => console.log;
 const testOnDeselect = (tag: TagModel) => console.log;

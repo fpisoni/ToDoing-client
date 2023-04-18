@@ -5,6 +5,14 @@ export interface TaskModel {
     id: string;
     note?: string;
     tags?: TagModel[];
-    priority?: string;
+    priority: Priority;
     dueDate?: Date;
+}
+
+export enum Priority {
+    None = 'None',
+    Low = 'Low',
+    Medium = 'Medium',
+    High = 'High',
+    Urgent = 'Urgent',
 }

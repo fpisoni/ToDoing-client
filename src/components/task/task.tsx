@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { TaskModel } from '../../models/task.model';
+import { Priority, TaskModel } from '../../models/task.model';
 import Tag from '../tag/tag';
 import { TagModel } from '../../models/tag.model';
 import './task.css'
 
 import CheckIcon from '@mui/icons-material/Check';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
@@ -54,7 +53,9 @@ const Task = ( {data, onDelete, onSelect, onDeselect}: Props ) => {
         <Card className='task__container'>
             <CardContent>
                 <div className='title-dot__container'>
-                    <span className='dot'></span>
+                    <Tooltip title={ (data?.priority === Priority.None ? 'No' : data?.priority) + ' Priority'} placement='top' arrow>
+                        <span className={'dot dot--'+ data.priority}></span>
+                    </Tooltip>
                     <Typography variant='h5' component='div'>
                         {data.title}
                     </Typography>
@@ -83,13 +84,6 @@ const Task = ( {data, onDelete, onSelect, onDeselect}: Props ) => {
                         <Link to={'task/' + data.id}>
                             <IconButton className='button--edit'>
                                 <RemoveRedEyeIcon />
-                            </IconButton>
-                        </Link>
-                    </Tooltip>
-                    <Tooltip title='Edit'>
-                        <Link to={'edit/' + data.id}>
-                            <IconButton className='button--edit' data-testid='edit-button'>
-                                <EditIcon />
                             </IconButton>
                         </Link>
                     </Tooltip>

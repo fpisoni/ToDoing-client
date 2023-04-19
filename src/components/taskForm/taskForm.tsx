@@ -80,7 +80,7 @@ const TaskForm = ({isEdit, onAction, taskData, nextTaskId}: Props) => {
             <div>
                 <div className='form-actions__container'>
                     <span className='button-cancel'>
-                        <Link to={'/task/'+ taskData?.id}>
+                        <Link to={isEdit ? '/task/'+ taskData?.id : '/'}>
                             <Button variant="outlined" color='error'>Cancel</Button>
                         </Link>
                     </span>
